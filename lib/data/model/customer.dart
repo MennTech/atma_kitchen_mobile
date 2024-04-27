@@ -1,5 +1,3 @@
-import 'package:http/http.dart';
-
 class Customer {
   String? id;
   String nama;
