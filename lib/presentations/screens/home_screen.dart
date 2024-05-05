@@ -62,24 +62,45 @@ class _HomeScreeState extends State<HomeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(HexColor("#D08854")),
-                    ),
-                    onPressed: () {
+                 // change to gesture
+                  GestureDetector(
+                    onTap: () {
                       Navigator.pushNamed(context, '/loginCustomer');
                     },
-                    child: Text('Login Customer', style: TextStyle(color: HexColor("#FFFFFF"))),
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(HexColor("#D08854")),
+                    child: Container(
+                      width: size.width * (4 / 5),
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      decoration: BoxDecoration(
+                          color: HexColor("#65390E"),
+                          borderRadius: BorderRadius.circular(8.0)),
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color: HexColor("#F9F9F1"),
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/loginKaryawan');
-                    },
-                    child: Text('Login Karyawan', style: TextStyle(color: HexColor("#FFFFFF"))),
-                  ),
+                  ),  
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/loginKaryawan');
+                        },
+                        child: Text(
+                          'Merupakan Karyawan? Login di sini',
+                          style: TextStyle(
+                            color: HexColor("#65390E"),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
