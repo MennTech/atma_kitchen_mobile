@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend_mobile/data/repository/auth_repo.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:frontend_mobile/data/model/customer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -14,7 +15,9 @@ class _ProfileState extends State<Profile> {
   Customer? data;
 
   void resfresh() async {
-    Customer? customerData = await AuthRepository().showProfile();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    Customer? customerData = await AuthRepository().showProfile(token!);
     setState(() {
       data = customerData;
       Future.delayed(const Duration(seconds: 5));
