@@ -30,8 +30,7 @@ class DetailPesanan {
         jumlah: data['jumlah'],
         subtotal: data['subtotal'],
         produk: data['produk'] != null ? Produk.fromJson(data['produk']) : null,
-        hampers:
-            data['hampers'] != null ? Hampers.fromJson(data['hampers']) : null);
+        hampers: data['hampers'] != null ? Hampers.fromJson(data['hampers']) : null);
   }
   String toRawJson() => json.encode(toJson());
   Map<String, dynamic> toJson() => {

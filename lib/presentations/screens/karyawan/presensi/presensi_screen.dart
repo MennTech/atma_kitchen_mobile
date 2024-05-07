@@ -15,16 +15,32 @@ class _PresensiPageState extends State<PresensiScreen> {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Presensi Hari Ini'),
+          title: const Text('Presensi Hari Ini',
+          style: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
           automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: size.width,
-            ),
-            child: const DataTableExample(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Text("Tanggal: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)
+                      )
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: size.width,
+                ),
+                child: const DataTableExample(),
+              ),
+            ],
           ),
         ));
   }

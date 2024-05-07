@@ -3,11 +3,13 @@ import 'dart:convert';
 class Hampers{
   String id_hampers;
   String nama_hampers;
+  String gambar_hampers;
   int harga;
 
   Hampers(
       {required this.id_hampers,
         required this.nama_hampers,
+        required this.gambar_hampers,
         required this.harga}
   );
 
@@ -17,7 +19,9 @@ class Hampers{
     return Hampers(
         id_hampers: data['id_hampers'].toString(),
         nama_hampers: data['nama_hampers'],
+        gambar_hampers: data['gambar_hampers'],
         harga: data['harga']
+
     );
   }
 
@@ -25,6 +29,7 @@ class Hampers{
   Map<String, dynamic> toJson() => {
     'id_hampers': id_hampers,
     'nama_hampers': nama_hampers,
+    'gambar_hampers': gambar_hampers,
     'harga': harga
   };
 }
