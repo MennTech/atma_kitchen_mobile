@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/data/repository/auth_repo.dart';
 import 'package:frontend_mobile/presentations/screens/home_screen.dart';
@@ -23,6 +25,18 @@ class _ProfileState extends State<Profile> {
       data = customerData;
       Future.delayed(const Duration(seconds: 5));
     });
+  }
+
+  void logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try{
+      String token = prefs.getString('token')!;
+      await AuthRepository().logoutCustomer(token);
+      prefs.remove('token');
+    }catch(error){
+      log(error.toString());
+    }
+      
   }
 
   @override
@@ -156,7 +170,7 @@ class _ProfileState extends State<Profile> {
           SizedBox(
             height: size.height * (1 / 8),
             width: size.width,
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
@@ -169,7 +183,10 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: null, // Isi dengan route logout
+                  onPressed: () {
+                    logout();
+                    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+                  }, 
                   child: Text('Logout'),
                   style: ButtonStyle(
                       minimumSize: MaterialStatePropertyAll(Size(150, 50))),

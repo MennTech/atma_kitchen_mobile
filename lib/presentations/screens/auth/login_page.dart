@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:frontend_mobile/data/repository/auth_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:frontend_mobile/data/repository/presensi_repo.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,6 +23,10 @@ class _LoginPageState extends State<LoginPage> {
     AuthRepository authRepository = AuthRepository();
     var acceptedRole = ['Admin', 'Manager Operational', 'Owner'];
 
+    Future<void> generatePresensiHarian() async {
+      PresensiRepository().generatePresensi();
+    }
+
     Future<bool> isCustomer(String email, String password) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       try{
@@ -31,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         }
         return false;
       }catch(error){
-        print(error);
+        log(error.toString());
         return false;
       }
     }
@@ -45,11 +52,12 @@ class _LoginPageState extends State<LoginPage> {
       if(token != null && role != null && acceptedRole.contains(role)){
         prefs.setString('token', token);
         prefs.setString('role', role);
+        prefs.setString('namaKaryawan', response['karyawan']['nama_karyawan']);
         return true;
       }
       return false;
     }catch(error){
-      print(error);
+      log(error.toString());
       return false;
     }
   }
@@ -138,6 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                               onPressed: () async {
                                 FocusManager.instance.primaryFocus?.unfocus();
                                  if(await isCustomer(emailController.text, passwordController.text)){
+                                  if(!context.mounted) return;
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                     content: const Row(
@@ -163,19 +172,45 @@ class _LoginPageState extends State<LoginPage> {
                                     behavior: SnackBarBehavior.floating,
                                   ));
                                     if(!context.mounted) return;
-                                    Navigator.pushReplacementNamed(context, '/customer');
+                                    Navigator.pushNamedAndRemoveUntil(context, '/customer', (route) => false,);
                                   }else if(await isKaryawan(emailController.text, passwordController.text)){
                                     SharedPreferences prefs = await SharedPreferences.getInstance();
                                     String? role = prefs.getString('role');
                                     if(role == 'Admin'){
                                       if(!context.mounted) return;
-                                      Navigator.pushReplacementNamed(context, '/admin');
+                                      Navigator.pushNamedAndRemoveUntil(context, '/admin', (route) => false);
                                     }else if(role == 'Manager Operational'){
+                                      generatePresensiHarian();
                                       if(!context.mounted) return;
-                                      Navigator.pushReplacementNamed(context, '/managerOperational');
+                                      Navigator.pushNamedAndRemoveUntil(context, '/managerOperational', (route) => false);
                                     }else if(role == 'Owner'){
                                       if(!context.mounted) return;
-                                      Navigator.pushReplacementNamed(context, '/owner');
+                                      Navigator.pushNamedAndRemoveUntil(context, '/owner', (route) => false);
+                                    }else{
+                                      if(!context.mounted) return;
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: const Row(
+                                            children: [
+                                              Icon(Icons.error, color: Color(0xFFFFFFFF)),
+                                              SizedBox(width: 8.0),
+                                              Text('Role tidak dikenali',
+                                                style: TextStyle(
+                                                  color: Color(0xFFFFFFFF),
+                                                  fontSize: 16
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          backgroundColor: Colors.redAccent,
+                                          duration: const Duration(seconds: 3),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(4.0),
+                                          ),
+                                          margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                                          behavior: SnackBarBehavior.floating,  
+                                        )
+                                      );
                                     }
                                   }else{
                                     if(!context.mounted) return;
@@ -200,10 +235,8 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                         margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                                         behavior: SnackBarBehavior.floating,
-                                        
                                       )
                                     );
-                                    print('Login gagal');
                                   }
                               },
                               style: ElevatedButton.styleFrom(

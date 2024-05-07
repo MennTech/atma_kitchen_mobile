@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/home_karyawan.dart';
+import 'package:frontend_mobile/presentations/screens/karyawan/profile_karyawan.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NavigationOwner extends StatefulWidget {
@@ -39,7 +40,7 @@ class _NavigationOwnerState extends State<NavigationOwner> {
           children: const [
             HomeScreenKaryawan(),
             Placeholder(), // GANTI
-            Placeholder() // GANTI
+            ProfileKaryawan() // GANTI
           ],
         ),
       ),
