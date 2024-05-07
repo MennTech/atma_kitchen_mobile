@@ -1,8 +1,8 @@
 class Routes{
   static const String profile = "/profile";
   static const String home = "/home";
-  static const String loginCustomer = "/loginCustomer";
-  static const String loginKaryawan = "/loginKaryawan";
+  static const String login = "/login";
+  // static const String loginKaryawan = "/loginKaryawan";
   static const String customer = "/customer";
   static const String karyawan = "/karyawan";
   static const String admin = "/admin";
