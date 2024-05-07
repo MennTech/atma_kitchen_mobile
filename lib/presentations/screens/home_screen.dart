@@ -58,7 +58,7 @@ class _HomeScreeState extends State<HomeScreen> {
                     topRight: Radius.circular(20))),
             // create two button for login customer and login karyawan
             child: Padding(
-              padding: EdgeInsets.only(top: 24, bottom: 24),
+              padding: const EdgeInsets.only(top: 24, bottom: 24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -69,7 +69,7 @@ class _HomeScreeState extends State<HomeScreen> {
                     },
                     child: Container(
                       width: size.width * (4 / 5),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
                       decoration: BoxDecoration(
                           color: HexColor("#65390E"),
                           borderRadius: BorderRadius.circular(8.0)),

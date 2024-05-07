@@ -41,19 +41,19 @@ class _LoginCustomerState extends State<LoginCustomer> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 16.0),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
               child: Form(
                   key: formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 16.0),
                         child: TextFormField(
                           controller: emailController,
                           decoration: InputDecoration(
-                              labelText: 'Email', border: OutlineInputBorder(),
+                              labelText: 'Email', border: const OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: HexColor("#65390E")),
                               ),
@@ -67,14 +67,14 @@ class _LoginCustomerState extends State<LoginCustomer> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 16.0),
                         child: TextFormField(
                           controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               labelText: 'Password',
-                              border: OutlineInputBorder(),
+                              border: const OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: HexColor("#65390E")),
                               ),
@@ -89,7 +89,7 @@ class _LoginCustomerState extends State<LoginCustomer> {
                       ),
                       // lupa password text button
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -118,7 +118,7 @@ class _LoginCustomerState extends State<LoginCustomer> {
                           },
                           child: Container(
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
                             decoration: BoxDecoration(
                                 color: HexColor("#65390E"),
                                 borderRadius: BorderRadius.circular(8.0)),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/home_karyawan.dart';
+import 'package:frontend_mobile/presentations/screens/karyawan/presensi/presensi_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NavigationMO extends StatefulWidget {
@@ -37,8 +38,8 @@ class _NavigationMOState extends State<NavigationMO> {
             });
           },
           children: const [
-            HomeScreenKaryawan(),
-            Placeholder(), // GANTI
+            PresensiScreen(),
+            HomeScreenKaryawan(), // GANTI
             Placeholder() // GANTI
           ],
         ),
@@ -55,12 +56,12 @@ class _NavigationMOState extends State<NavigationMO> {
         // GANTI
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.assignment),
+            label: 'Presensi',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.history),
-            label: 'MO Test',
+            label: 'Laporan',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
