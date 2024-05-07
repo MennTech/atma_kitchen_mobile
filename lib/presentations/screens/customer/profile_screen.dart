@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/data/repository/auth_repo.dart';
-import 'package:frontend_mobile/presentations/screens/auth/login_customer.dart';
 import 'package:frontend_mobile/presentations/screens/home_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:frontend_mobile/data/model/customer.dart';

@@ -50,7 +50,7 @@ class _HomeScreeState extends State<HomeScreen> {
           ),
           Container(
             width: size.width,
-            height: size.height * (1 / 5),
+            // height: size.height * (1 / 5),
             decoration: BoxDecoration(
                 color: HexColor("#FFFFFF"),
                 borderRadius: const BorderRadius.only(
@@ -60,12 +60,12 @@ class _HomeScreeState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.only(top: 24, bottom: 24),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                  // change to gesture
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/loginCustomer');
+                      Navigator.pushNamed(context, '/login');
                     },
                     child: Container(
                       width: size.width * (4 / 5),
@@ -83,24 +83,6 @@ class _HomeScreeState extends State<HomeScreen> {
                       ),
                     ),
                   ),  
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/loginKaryawan');
-                        },
-                        child: Text(
-                          'Merupakan Karyawan? Login di sini',
-                          style: TextStyle(
-                            color: HexColor("#65390E"),
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),
