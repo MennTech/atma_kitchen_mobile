@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/data/repository/auth_repo.dart';
+import 'package:frontend_mobile/presentations/screens/auth/login_customer.dart';
+import 'package:frontend_mobile/presentations/screens/home_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:frontend_mobile/data/model/customer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +16,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   Customer? data;
 
-  void resfresh() async {
+  void refresh() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
     Customer? customerData = await AuthRepository().showProfile(token!);
@@ -26,7 +28,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
-    resfresh();
+    refresh();
     super.initState();
   }
 
@@ -54,7 +56,7 @@ class _ProfileState extends State<Profile> {
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20))),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 48, 24, 36),
+                padding: const EdgeInsets.fromLTRB(24, 55, 24, 36),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -150,6 +152,30 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               ),
+            ),
+          ),
+          SizedBox(
+            height: size.height * (1 / 8),
+            width: size.width,
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 40.0),
+                  child: ElevatedButton(
+                    onPressed: null, // Isi dengan route ubah password
+                    child: Text('Ubah Password'),
+                    style: ButtonStyle(
+                        minimumSize: MaterialStatePropertyAll(Size(150, 50))),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: null, // Isi dengan route logout
+                  child: Text('Logout'),
+                  style: ButtonStyle(
+                      minimumSize: MaterialStatePropertyAll(Size(150, 50))),
+                )
+              ],
             ),
           )
         ],

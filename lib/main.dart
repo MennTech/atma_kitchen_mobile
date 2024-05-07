@@ -32,11 +32,6 @@ class MainApp extends StatelessWidget {
         Routes.managerOperational: (context) => const NavigationMO(),
         Routes.owner: (context) => const NavigationOwner(),
         },
-      // home: Scaffold(
-      //   body: Center(
-      //     child: Text('Hello World!'),
-      //   ),
-      // ),
      );
   }
 }

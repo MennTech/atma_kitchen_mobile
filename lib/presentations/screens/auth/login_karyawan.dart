@@ -2,6 +2,7 @@
   import 'package:hexcolor/hexcolor.dart';
   import 'package:frontend_mobile/data/repository/auth_repo.dart';
   import 'package:shared_preferences/shared_preferences.dart';
+  import 'package:frontend_mobile/data/repository/presensi_repo.dart';
 
 class LoginKaryawan extends StatefulWidget {
   const LoginKaryawan({super.key});
@@ -16,6 +17,10 @@ class _LoginKaryawanState extends State<LoginKaryawan> {
     final formKey = GlobalKey<FormState>();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+
+    Future<void> generatePresensiHarian() async {
+      PresensiRepository().generatePresensi();
+    }
 
     void login(String email, String password) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -36,6 +41,7 @@ class _LoginKaryawanState extends State<LoginKaryawan> {
         if(role == 'Admin'){
           Navigator.pushReplacementNamed(context, '/admin');
         }else if(role == 'Manager Operational'){
+          generatePresensiHarian();
           Navigator.pushReplacementNamed(context, '/managerOperational');
         }else if(role == 'Owner'){
           Navigator.pushReplacementNamed(context, '/owner');
@@ -53,19 +59,19 @@ class _LoginKaryawanState extends State<LoginKaryawan> {
           const Text("Login Karyawan",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
               child: Form(
                   key: formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 16.0),
                         child: TextFormField(
                           controller: emailController,
                           decoration: InputDecoration(
-                              labelText: 'Email', border: OutlineInputBorder(),
+                              labelText: 'Email', border: const OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: HexColor("#65390E")),
                               ),
@@ -79,14 +85,14 @@ class _LoginKaryawanState extends State<LoginKaryawan> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 16.0),
                         child: TextFormField(
                           controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               labelText: 'Password',
-                              border: OutlineInputBorder(),
+                              border: const OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: HexColor("#65390E")),
                               ),
@@ -99,7 +105,7 @@ class _LoginKaryawanState extends State<LoginKaryawan> {
                           },
                         ),
                       ),
-                      SizedBox(height: 32.0),
+                      const SizedBox(height: 32.0),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: GestureDetector(
@@ -111,11 +117,11 @@ class _LoginKaryawanState extends State<LoginKaryawan> {
                           },
                           child: Container(
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
                             decoration: BoxDecoration(
                                 color: HexColor("#65390E"),
                                 borderRadius: BorderRadius.circular(8.0)),
-                            child: Text(
+                            child: const Text(
                               'Login',
                               style: TextStyle(
                                   color: Colors.white,

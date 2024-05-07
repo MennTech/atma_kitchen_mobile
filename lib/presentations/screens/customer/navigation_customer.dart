@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/presentations/screens/customer/home_customer.dart';
 import 'package:frontend_mobile/presentations/screens/customer/profile_screen.dart';
+import 'package:frontend_mobile/presentations/screens/customer/history_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NavigationCustomer extends StatefulWidget {
@@ -11,7 +12,6 @@ class NavigationCustomer extends StatefulWidget {
 }
 
 class _NavigationCustomerState extends State<NavigationCustomer> {
-
   int _currentIndex = 0;
   late PageController _pageController;
 
@@ -38,11 +38,7 @@ class _NavigationCustomerState extends State<NavigationCustomer> {
               _currentIndex = index;
             });
           },
-          children: const [
-            HomeScreenCustomer(),
-            Placeholder(), // GANTI DENGAN HISTORY TRANSAKSI
-            Profile()
-          ],
+          children: const [HomeScreenCustomer(), HistoryScreen(), Profile()],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

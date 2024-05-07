@@ -10,6 +10,6 @@ class HomeScreenCustomer extends StatefulWidget {
 class _HomeScreenCustomerState extends State<HomeScreenCustomer> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }
