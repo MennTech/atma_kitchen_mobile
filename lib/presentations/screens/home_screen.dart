@@ -1,90 +1,262 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_mobile/presentations/screens/auth/login_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreeState();
-}
-
-class _HomeScreeState extends State<HomeScreen> {
+class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
-
     return Scaffold(
-      backgroundColor: HexColor("#F9F9F1"),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          // make it at the middle
-          Container(
-            alignment: Alignment.center,
-            width: size.width,
-            height: size.height * (4 / 5),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 48, 24, 36),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              padding: EdgeInsets.only(top: 100, bottom: 100),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                image: DecorationImage(
+                  image: AssetImage("assets/images/bg.png"),
+                  fit: BoxFit.cover,
+                  opacity: 0.6,
+                ),
+              ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Atma Kitchen',
-                    style: TextStyle(
-                      color: HexColor("#65390E"),
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: Text(
+                      "Atma Kitchen",
+                      style: GoogleFonts.pacifico(
+                        fontSize: 45,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  Text(
-                    'Surga Kelezatan, Harmoni Rasa yang Memanjakan Jiwa. Di sini, kami mengolah setiap produk dengan penuh cinta, menciptakan sajian yang memanjakan lidah sekaligus menghanyutkan perasaan Anda.',
-                    style: TextStyle(
-                      color: HexColor("#65390E"),
-                      fontSize: 12,
-                    ),
+                  Column(
+                    children: [
+                      Text(
+                        "Rasakan Cinta di Setiap Lapisan",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Material(
+                        color: HexColor("#8F5C54"),
+                        borderRadius: BorderRadius.circular(10),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                            child: Text(
+                              "Get Started",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-          Container(
-            width: size.width,
-            // height: size.height * (1 / 5),
-            decoration: BoxDecoration(
-                color: HexColor("#FFFFFF"),
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20))),
-            // create two button for login customer and login karyawan
-            child: Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                 // change to gesture
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                    child: Container(
-                      width: size.width * (4 / 5),
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      decoration: BoxDecoration(
-                          color: HexColor("#65390E"),
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          color: HexColor("#F9F9F1"),
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),  
-                ],
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                "Our Products",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+            ),
+            ProductSection(),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                "About Us",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            AboutUsSection(),
+            SizedBox(height: 50),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProductSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Example list of products
+    final List<Map<String, String>> products = [
+      {"name": "Product 1", "image": "assets/images/product1.jpg"},
+      {"name": "Product 2", "image": "assets/images/product2.jpg"},
+      {"name": "Product 3", "image": "assets/images/product3.jpg"},
+      {"name": "Product 4", "image": "assets/images/product4.jpg"},
+      {"name": "Product 5", "image": "assets/images/product5.jpg"},
+      {"name": "Product 6", "image": "assets/images/product6.jpg"},
+    ];
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: products.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          childAspectRatio: 0.8,
+        ),
+        itemBuilder: (context, index) {
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 4,
+                  offset: Offset(2, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Image.asset(
+                  products[index]["image"]!,
+                  width: 100,
+                  height: 100,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  products[index]["name"]!,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class AboutUsSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Welcome to Atma Kitchen",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            "Atma Kitchen adalah toko kue yang didedikasikan untuk membawa kebahagiaan melalui setiap gigitan. Kami percaya bahwa setiap kue memiliki cerita, dan di Atma Kitchen, kami berusaha untuk membuat setiap cerita itu istimewa.",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            "Our Story",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            "Bermula dari dapur kecil di rumah, Atma Kitchen lahir dari cinta kami terhadap seni pembuatan kue dan keinginan untuk berbagi kebahagiaan dengan orang lain. Nama 'Atma' diambil dari bahasa Sansekerta yang berarti 'jiwa', mencerminkan komitmen kami untuk menaruh hati dan jiwa kami dalam setiap kue yang kami buat.",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
+          SizedBox(height: 20),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15), // Set the border radius here
+            child: Image.asset("assets/images/preview.jpg"),  // Gambar pertama
+          ),
+          SizedBox(height: 20),
+          Text(
+            "Our Mission",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            "Misi kami adalah untuk menciptakan kue yang tidak hanya lezat tetapi juga indah dipandang. Kami menggunakan bahan-bahan berkualitas tinggi, resep tradisional yang diwariskan secara turun-temurun, dan sentuhan inovasi untuk menghasilkan kue yang menggugah selera dan menyentuh hati.",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            "Visit Us",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            "Kami mengundang Anda untuk mengunjungi toko kami dan merasakan sendiri kelezatan dan keindahan kue kami. Atma Kitchen adalah tempat di mana cita rasa bertemu dengan keahlian, dan setiap kue adalah cerminan dari dedikasi kami untuk menyajikan yang terbaik.",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            "Temukan keajaiban di setiap gigitan, hanya di Atma Kitchen.",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
             ),
           ),
         ],
