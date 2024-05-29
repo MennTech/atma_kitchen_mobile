@@ -14,7 +14,6 @@ class PesananRepository {
       if (response.statusCode != 200) throw Exception(response.reasonPhrase);
 
       List data = json.decode(response.body)['data'];
-      print(data.map((e) => Pesanan.fromJson(e)).toList().toString());
       return data.map((e) => Pesanan.fromJson(e)).toList();
     } catch (e) {
       return Future.error(e.toString());
