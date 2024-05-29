@@ -3,6 +3,7 @@ import 'package:frontend_mobile/data/model/pesanan.dart';
 import 'package:frontend_mobile/data/repository/pesanan_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
+import 'package:frontend_mobile/constant.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -20,8 +21,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
     String? token = prefs.getString('token');
     List<Pesanan> pesananData = await PesananRepository().fetchPesanan(token!);
     setState(() {
-      allPesanan = pesananData;
-      filteredPesanan = pesananData;
+      allPesanan = pesananData.any((element) => element.status != 'Keranjang') ? pesananData.where((element) => element.status != 'Keranjang').toList() : pesananData;
+      filteredPesanan = pesananData.any((element) => element.status != 'Keranjang') ? pesananData.where((element) => element.status != 'Keranjang').toList() : pesananData;
       Future.delayed(const Duration(seconds: 5));
     });
   }
@@ -161,13 +162,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                         child: SizedBox(
                                           width: size.width * (1 / 4),
                                           height: size.height * (1 / 10),
-                                          child: const Image(
-                                            image: AssetImage(
-                                              // item.produk != null ? 
-                                              // item.produk!.gambar_produk :
-                                              // item.hampers!.gambar_hampers
-                                              'assets/images/download.jpeg'
-                                            ),
+                                          child: Image.network(
+                                              item.produk != null ? 
+                                              endpointImage+item.produk!.gambar_produk :
+                                              endpointImage+item.hampers!.gambar_hampers,
+                                              // 'assets/images/download.jpeg'
                                             fit: BoxFit.fill,
                                           ),
                                         ),
