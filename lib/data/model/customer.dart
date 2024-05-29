@@ -20,7 +20,7 @@ class Customer {
     return Customer(
         id: data['id_customer'].toString(),
         nama: data['nama_customer'],
-        email: data['email_customer'],
+        email: data['email'],
         noTelp: data['no_telp'],
         tglLahir: data['tanggal_lahir'],
         poin: data['poin'],

@@ -21,7 +21,7 @@ class AuthRepository {
 
         }, 
         body: json.encode({
-          "email_customer": email_customer,
+          "email": email_customer,
           "password": password
         }));
 
@@ -84,7 +84,7 @@ class AuthRepository {
     Map<String, dynamic> dataCustomer = json.decode(respone.body);
     return Customer(
         nama: dataCustomer['nama_customer'].toString(),
-        email: dataCustomer['email_customer'],
+        email: dataCustomer['email'],
         noTelp: dataCustomer['no_telp'],
         tglLahir: dataCustomer['tanggal_lahir'],
         poin: dataCustomer['poin'].toString(),
