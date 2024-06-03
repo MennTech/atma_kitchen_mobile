@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/home_karyawan.dart';
+import 'package:frontend_mobile/presentations/screens/karyawan/laporan_bahan_baku/laporan_bahan_baku_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/presensi/presensi_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/profile_karyawan.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -40,7 +41,7 @@ class _NavigationMOState extends State<NavigationMO> {
           },
           children: const [
             PresensiScreen(),
-            HomeScreenKaryawan(), // GANTI
+            LaporanBahanBakuScreen(),
             ProfileKaryawan() // GANTI
           ],
         ),
@@ -61,8 +62,8 @@ class _NavigationMOState extends State<NavigationMO> {
             label: 'Presensi',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Laporan',
+            icon: Icon(Icons.kitchen),
+            label: 'Laporan Stok Bahan Baku',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

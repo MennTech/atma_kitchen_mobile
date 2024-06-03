@@ -78,7 +78,6 @@ class AuthRepository {
       "Authorization": 'Bearer ${token}'
     });
 
-    print(respone.body);
     if (respone.statusCode != 200) throw Exception(respone.reasonPhrase);
 
     Map<String, dynamic> dataCustomer = json.decode(respone.body);
