@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/home_karyawan.dart';
+import 'package:frontend_mobile/presentations/screens/karyawan/laporan_bahan_baku/laporan_bahan_baku_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/profile_karyawan.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -39,7 +40,7 @@ class _NavigationOwnerState extends State<NavigationOwner> {
           },
           children: const [
             HomeScreenKaryawan(),
-            Placeholder(), // GANTI
+            LaporanBahanBakuScreen(),
             ProfileKaryawan() // GANTI
           ],
         ),
@@ -60,8 +61,8 @@ class _NavigationOwnerState extends State<NavigationOwner> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Owner Test',
+            icon: Icon(Icons.kitchen),
+            label: 'Laporan Stok Bahan Baku',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
