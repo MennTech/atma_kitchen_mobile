@@ -1,33 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/data/model/bahan_baku.dart';
-import 'package:frontend_mobile/data/repository/laporan_repo.dart';
 
 class TabelBahanBaku extends StatefulWidget {
-  const TabelBahanBaku({super.key});
+  final List<BahanBaku>? allBahanBaku;
+
+  const TabelBahanBaku({super.key, this.allBahanBaku});
 
   @override
   State<TabelBahanBaku> createState() => _TabelBahanBakuState();
 }
 
 class _TabelBahanBakuState extends State<TabelBahanBaku> {
-  List<BahanBaku>? allBahanBaku;
-
-  Future<void> getAllBahanBakuNow() async {
-    LaporanRepository().fetchBahanBaku().then((value) {
-      setState(() {
-        allBahanBaku = value;
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    getAllBahanBakuNow();
-    super.initState();
-  }
+  // List<BahanBaku>? allBahanBaku;
 
   @override
   Widget build(BuildContext context) {
+    List<BahanBaku>? allBahanBaku = widget.allBahanBaku;
     
     if(allBahanBaku == null ){
       return const Center(
@@ -35,7 +23,7 @@ class _TabelBahanBakuState extends State<TabelBahanBaku> {
       );
     }
 
-    if(allBahanBaku!.isEmpty){
+    if(allBahanBaku.isEmpty){
       return const Center(
         child: Text('Data Kosong'),
       );
@@ -48,7 +36,7 @@ class _TabelBahanBakuState extends State<TabelBahanBaku> {
           label: Expanded(
             child: Text(
               'Nama Bahan',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
             ),
           )
         ),
@@ -56,7 +44,7 @@ class _TabelBahanBakuState extends State<TabelBahanBaku> {
           label: Expanded(
             child: Text(
               'Satuan',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
             ),
           )
         ),
@@ -64,12 +52,12 @@ class _TabelBahanBakuState extends State<TabelBahanBaku> {
           label: Expanded(
             child: Text(
               'Stok',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
             ),
           )
         ),
       ],
-      rows: allBahanBaku!.map((e) => DataRow(
+      rows: allBahanBaku.map((e) => DataRow(
         cells: <DataCell>[
           DataCell(Text(e.namaBahanBaku)),
           DataCell(Text(e.satuan)),
