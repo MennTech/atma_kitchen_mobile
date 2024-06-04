@@ -29,7 +29,7 @@ class Pesanan {
     required this.delivery,
     required this.total,
     required this.ongkos_kirim,
-    required this.tip,
+    this.tip,
     required this.status,
     required this.jumlah_pembayaran,
     required this.poin_dipakai,

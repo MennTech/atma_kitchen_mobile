@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:frontend_mobile/data/model/bahan_baku.dart';
+import 'package:frontend_mobile/data/model/pengunaan_bahan_baku.dart';
 
 class LaporanRepository {
   static const String url = '10.0.2.2:8000';
@@ -15,6 +16,17 @@ class LaporanRepository {
       List data = json.decode(response.body)['data'];
       return data.map((e) => BahanBaku.fromJson(e)).toList();
     }catch(e){
+      return Future.error(e.toString());
+    }
+  }
+
+  Future<List<PenggunaanBahanBaku>> fetchPenggunaanBahanBaku(startDate, endDate) async {
+    try {
+      var response = await get(Uri.http(url, "${endpoint}laporan/penggunaan-bahan-baku/$startDate/$endDate"));
+      print(response.body);
+      List data = json.decode(response.body)['data'];
+      return data.map((e) => PenggunaanBahanBaku.fromJson(e)).toList();
+    } catch (e) {
       return Future.error(e.toString());
     }
   }

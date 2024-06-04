@@ -19,10 +19,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
   void refresh() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
-    List<Pesanan> pesananData = await PesananRepository().fetchPesanan(token!);
+    List<Pesanan> pesananData = await PesananRepository().fetchHistory(token!);
     setState(() {
-      allPesanan = pesananData.any((element) => element.status != 'Keranjang') ? pesananData.where((element) => element.status != 'Keranjang').toList() : pesananData;
-      filteredPesanan = pesananData.any((element) => element.status != 'Keranjang') ? pesananData.where((element) => element.status != 'Keranjang').toList() : pesananData;
+      allPesanan = pesananData;
+      filteredPesanan = pesananData;
       Future.delayed(const Duration(seconds: 5));
     });
   }
