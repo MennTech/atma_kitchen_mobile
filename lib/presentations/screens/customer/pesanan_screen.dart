@@ -14,7 +14,7 @@ class PesananScreen extends StatefulWidget {
 
 class _PesananScreenState extends State<PesananScreen> {
 
-  List<Pesanan>? allPesanan;
+  List<Pesanan> allPesanan = [];
 
   void refresh() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -35,7 +35,7 @@ class _PesananScreenState extends State<PesananScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    if(allPesanan!.length == 0){
+    if(allPesanan.isEmpty){
       return Scaffold(
         appBar: AppBar(
           title: const Text('Pesanan',

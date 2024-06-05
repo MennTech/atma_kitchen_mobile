@@ -54,8 +54,6 @@ class _TabelPenggunaanBahanBakuState extends State<TabelPenggunaanBahanBaku> {
     }
   }
 
-  
-
   @override
   void initState() {
     endDate = DateTime.now();
@@ -66,16 +64,6 @@ class _TabelPenggunaanBahanBakuState extends State<TabelPenggunaanBahanBaku> {
 
   @override
   Widget build(BuildContext context) {
-    if (allPenggunaanBahanBaku == null) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    if (allPenggunaanBahanBaku!.isEmpty) {
-      return const Center(
-        child: Text('Data Kosong'),
-      );
-    }
     return Column(
       children: [
         Row(
@@ -125,51 +113,56 @@ class _TabelPenggunaanBahanBakuState extends State<TabelPenggunaanBahanBaku> {
           ],
         ),
         const SizedBox(height: 16),
-        Column(
-          children: [
-            DataTable(
-              border: TableBorder.all(width: 1.0, color: Colors.black),
-              columns: const <DataColumn>[
-                DataColumn(
-                  label: Expanded(
-                    child: Text(
-                      'Nama Bahan',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        if (allPenggunaanBahanBaku == null)
+          const Center(child: CircularProgressIndicator())
+        else if (allPenggunaanBahanBaku!.isEmpty)
+          const Center(child: Text('Data Kosong'))
+        else
+          Column(
+            children: [
+              DataTable(
+                border: TableBorder.all(width: 1.0, color: Colors.black),
+                columns: const <DataColumn>[
+                  DataColumn(
+                    label: Expanded(
+                      child: Text(
+                        'Nama Bahan',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
                     ),
                   ),
-                ),
-                DataColumn(
-                  label: Expanded(
-                    child: Text(
-                      'Satuan',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  DataColumn(
+                    label: Expanded(
+                      child: Text(
+                        'Satuan',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
                     ),
                   ),
-                ),
-                DataColumn(
-                  label: Expanded(
-                    child: Text(
-                      'Digunakan',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  DataColumn(
+                    label: Expanded(
+                      child: Text(
+                        'Digunakan',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
                     ),
                   ),
-                ),
-              ],
-              rows: allPenggunaanBahanBaku!.map((e) => DataRow(
-                cells: <DataCell>[
-                  DataCell(Text(e.namaBahanBaku)),
-                  DataCell(Text(e.satuan)),
-                  DataCell(Text(e.digunakan.toString())),
                 ],
-              )).toList(),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => generatePdf(allPenggunaanBahanBaku!, '${DateFormat('yyyy-MM-dd').format(startDate!)} - ${DateFormat('yyyy-MM-dd').format(endDate!)}', context),
-              child: const Text('Generate PDF'),
-            ),
-          ],
-        ),
+                rows: allPenggunaanBahanBaku!.map((e) => DataRow(
+                  cells: <DataCell>[
+                    DataCell(Text(e.namaBahanBaku)),
+                    DataCell(Text(e.satuan)),
+                    DataCell(Text(e.digunakan.toString())),
+                  ],
+                )).toList(),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () => generatePdf(allPenggunaanBahanBaku!, '${DateFormat('yyyy-MM-dd').format(startDate!)} - ${DateFormat('yyyy-MM-dd').format(endDate!)}', context),
+                child: const Text('Generate PDF'),
+              ),
+            ],
+          ),
       ],
     );
   }
