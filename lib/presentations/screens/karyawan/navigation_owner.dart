@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/home_karyawan.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/laporan_bahan_baku/laporan_bahan_baku_screen.dart';
+import 'package:frontend_mobile/presentations/screens/karyawan/laporan_penggunaan_bahan_baku/laporan_penggunaan_bahan_baku_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/profile_karyawan.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -41,6 +42,7 @@ class _NavigationOwnerState extends State<NavigationOwner> {
           children: const [
             HomeScreenKaryawan(),
             LaporanBahanBakuScreen(),
+            LaporanPenggunaanBahanBakuScreen(),
             ProfileKaryawan() // GANTI
           ],
         ),
@@ -63,6 +65,10 @@ class _NavigationOwnerState extends State<NavigationOwner> {
           BottomNavigationBarItem(
             icon: Icon(Icons.kitchen),
             label: 'Laporan Stok Bahan Baku',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assessment_rounded),
+            label: 'Penggunaan Bahan Baku',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
