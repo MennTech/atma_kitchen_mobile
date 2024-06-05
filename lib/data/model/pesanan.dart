@@ -6,17 +6,18 @@ class Pesanan {
   String id_customer;
   String tanggal_pesan;
   String tanggal_ambil;
-  String tanggal_lunas;
+  String? tanggal_lunas;
   String alamat;
   String delivery;
   int total;
-  int ongkos_kirim;
+  int? ongkos_kirim;
+  String? jarak;
   int? tip;
   String status;
-  int jumlah_pembayaran;
+  int? jumlah_pembayaran;
   int poin_dipakai;
   int poin_dapat;
-  String bukti_pembayaran;
+  String? bukti_pembayaran;
   List<DetailPesanan> detailPesanan;
 
   Pesanan({
@@ -24,17 +25,18 @@ class Pesanan {
     required this.id_customer,
     required this.tanggal_pesan,
     required this.tanggal_ambil,
-    required this.tanggal_lunas,
+    this.tanggal_lunas,
     required this.alamat,
     required this.delivery,
     required this.total,
-    required this.ongkos_kirim,
+    this.ongkos_kirim,
+    this.jarak,
     this.tip,
     required this.status,
-    required this.jumlah_pembayaran,
+    this.jumlah_pembayaran,
     required this.poin_dipakai,
     required this.poin_dapat,
-    required this.bukti_pembayaran,
+    this.bukti_pembayaran,
     required this.detailPesanan
   });
 
@@ -51,6 +53,7 @@ class Pesanan {
       delivery: data['delivery'],
       total: data['total'],
       ongkos_kirim: data['ongkos_kirim'],
+      jarak: data['jarak'].toString(),
       tip: data['tip'] ?? 0,
       status: data['status'],
       jumlah_pembayaran: data['jumlah_pembayaran'],
@@ -74,6 +77,7 @@ class Pesanan {
         'delivery': delivery,
         'total': total,
         'ongkos_kirim': ongkos_kirim,
+        'jarak': jarak,
         'tip': tip,
         'status': status,
         'jumlah_pembayaran': jumlah_pembayaran,
