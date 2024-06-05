@@ -4,6 +4,7 @@ import 'package:frontend_mobile/presentations/screens/karyawan/laporan_bahan_bak
 import 'package:frontend_mobile/presentations/screens/karyawan/laporan_penggunaan_bahan_baku/laporan_penggunaan_bahan_baku_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/presensi/presensi_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/profile_karyawan.dart';
+import 'package:frontend_mobile/presentations/screens/karyawan/LaporanPemasukanPengeluaran/LaporanPemasukanPengeluaran.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NavigationMO extends StatefulWidget {
@@ -40,9 +41,10 @@ class _NavigationMOState extends State<NavigationMO> {
               _currentIndex = index;
             });
           },
-          children: const [
+          children:[
             PresensiScreen(),
             LaporanBahanBakuScreen(),
+            LaporanTransaksi(),
             LaporanPenggunaanBahanBakuScreen(),
             ProfileKaryawan() // GANTI
           ],
@@ -67,6 +69,10 @@ class _NavigationMOState extends State<NavigationMO> {
           BottomNavigationBarItem(
             icon: Icon(Icons.kitchen),
             label: 'Laporan Stok Bahan Baku',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assessment_rounded),
+            label: 'Laporan Transaksi',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assessment_rounded),

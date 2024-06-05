@@ -6,6 +6,7 @@ import 'package:frontend_mobile/presentations/screens/home_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:frontend_mobile/data/model/customer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:frontend_mobile/presentations/screens/customer/Saldo_Screen.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -154,15 +155,25 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 12.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        labelProfile("Saldo"),
-                        valueProfile(data!.saldo)
-                      ],
+                      margin: const EdgeInsets.only(top: 12.0),
+                      child: GestureDetector(
+                        onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SaldoScreen(),
+                                ),
+                              );
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            labelProfile("Saldo"),
+                            valueProfile(data!.saldo)
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
