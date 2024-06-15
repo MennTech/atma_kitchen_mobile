@@ -3,6 +3,7 @@ import 'package:frontend_mobile/presentations/screens/karyawan/home_karyawan.dar
 import 'package:frontend_mobile/presentations/screens/karyawan/laporan_bahan_baku/laporan_bahan_baku_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/laporan_penggunaan_bahan_baku/laporan_penggunaan_bahan_baku_screen.dart';
 import 'package:frontend_mobile/presentations/screens/karyawan/profile_karyawan.dart';
+import 'package:frontend_mobile/presentations/screens/karyawan/LaporanPemasukanPengeluaran/LaporanPemasukanPengeluaran.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NavigationOwner extends StatefulWidget {
@@ -39,15 +40,16 @@ class _NavigationOwnerState extends State<NavigationOwner> {
               _currentIndex = index;
             });
           },
-          children: const [
-            HomeScreenKaryawan(),
+          children: [
             LaporanBahanBakuScreen(),
+            LaporanTransaksi(),
             LaporanPenggunaanBahanBakuScreen(),
             ProfileKaryawan() // GANTI
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         selectedItemColor: HexColor("#65390E"),
         onTap: (index) {
@@ -58,13 +60,13 @@ class _NavigationOwnerState extends State<NavigationOwner> {
         },
         // GANTI
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
+           BottomNavigationBarItem(
             icon: Icon(Icons.kitchen),
             label: 'Laporan Stok Bahan Baku',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assessment_rounded),
+            label: 'Laporan Transaksi',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assessment_rounded),
